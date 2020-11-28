@@ -14,7 +14,7 @@ router.get('/view', async function (req, res) {
   // 插入数据
   // find 查询多条
   const result = await AccountModel.findOne({
-    user: req.body.user
+    user: req.query.user
   })
   console.log(result)
   res.send(200, result)

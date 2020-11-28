@@ -1,7 +1,7 @@
 //引入mongoose.js文件
-var mongoose = require('./mongoose.js')
+const mongoose = require('../lib/mongoose.js')
 //定义schema
-var schema = mongoose.Schema
+const schema = mongoose.Schema
 const account = new schema({
   // 这里是数据库自己创建的属性名：他的属性类型   如：
   user: { type: String, require: true },

@@ -9,21 +9,26 @@ router.get('/', function (req, res, next) {
   res.send('respond with a resource')
 })
 
+// 查询
+router.get('/view', async function (req, res) {
+  // 插入数据
+  // find 查询多条
+  const result = await AccountModel.findOne({
+    user: req.body.user
+  })
+  console.log(result)
+  res.send(200, result)
+})
+
 // 新增
-router.post('/add', function (req, res) {
+router.post('/add', async function (req, res) {
   //插入数据
-  AccountModel.insertMany({
+  const result = await AccountModel.insertMany({
     user: req.body.user,
-    pwd: req.body.pwd,
-    sex: req.body.sex
+    pwd: req.body.pwd
   })
-  .then((data) => {
-    console.log('插入成功')
-  })
-  .catch((err) => {
-    console.log('插入失败')
-  })
-  res.send('添加成功')
+  console.log(result)
+  res.send(200, result)
 })
 
 // 删除
@@ -35,9 +40,10 @@ router.delete('/delete', async function (req, res) {
   console.log(result)
   // 删除多个(或所有)
   // AccountModel.deleteMany({}).then(result => console.log(result))
-  res.send('删除成功')
+  res.send(200, result)
 })
 
+// 更新
 router.post('/update', async function (req, res) {
   const _user = req.body.user
   const _pwd = req.body.pwd
@@ -45,10 +51,9 @@ router.post('/update', async function (req, res) {
     pwd: _pwd
   })
   console.log(result)
-
   // 更新多个
   // User.updateMany({查询条件}, {要更改的值}).then(result => console.log(result))
-  res.send('更新成功')
+  res.send(200, result)
 })
 
 router.post('/course', function (req, res) {
@@ -58,7 +63,7 @@ router.post('/course', function (req, res) {
   })
   // 将文档插入到数据库中
   course.save()
-  res.send('添加成功')
+  res.send(200, result)
 })
 
 module.exports = router

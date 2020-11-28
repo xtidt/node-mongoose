@@ -11,8 +11,12 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 // view engine setup
+// use art
+app.engine('art', require('express-art-template'));
+app.set('view engine', 'art');
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+// use ejs
+// app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());

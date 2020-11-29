@@ -31,6 +31,17 @@ router.post('/add', async function (req, res) {
   res.send(200, result)
 })
 
+// 新增:create
+router.post('/create', async function (req, res) {
+  //插入数据
+  const result = await AccountModel.create({
+    user: req.body.user,
+    pwd: req.body.pwd
+  })
+  console.log(result)
+  res.send(200, result)
+})
+
 // 删除
 router.delete('/delete', async function (req, res) {
   // 删除单个
